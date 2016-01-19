@@ -1,0 +1,22 @@
+<div class="event-details-container">
+<div class="detail-go-back"> <a  href="/events"> Back </a></div>
+<div class="detail-delete-event" ng-show="eventDetails.isUser(eventDetails.event)" ng-click="eventDetails.removeEvent(eventDetails.event)">Delete Event</div>
+<div class="detail-delete-event" ng-show="eventDetails.isUser(eventDetails.event)" ui-sref="eventEdit({eventId: eventDetails.event._id})">Edit</div>
+	<div class="event-details ng-trans ng-trans-slide-right" ng-show="eventDetails.show">
+		<div class="event-details-name">{{eventDetails.event.name}}</div>
+		<div class="event-details-image"></div>
+		<div class="event-details-location"></div>
+		<div class="event-details-date"></div>
+		<div class="event-details-views"></div>
+		<div class="event-details-owner"></div>
+		<div class="event-details-cost"></div>
+		<div class="event-details-tag-container"></div>
+		<div class="event-details-media">
+			<div class="event-details-media-owner"></div>
+			<div class="event-details-media-attendee"></div>
+		</div>
+		<div class="event-details-body">
+			<div class="event-details-text">{{eventDetails.event.description}}</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+@import "control";
+
+.event-details-container {
+    width: calc(100% - 120px);
+    height: calc(100% - 40px);
+    top: 40px;
+    left: 120px;
+    background-image: url(img/pattern.png);
+    position: absolute;
+    padding: 0px 0px 0px 10px;
+    font-family: clean !important;
+
+    .event-details{
+    	top: 40px;
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "event-circle",
+  "authors": [
+    "SamHeutmaker <samheutmaker@gmail.com>"
+  ],
+  "description": "An event management and viewing platform",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "event-circle"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/lib",
+    "test",
+    "tests"
+  ]
+}
