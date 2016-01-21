@@ -1,31 +1,35 @@
 <div class="event-list-comp">
-<div class="event-list-controls">
-	<ul class="event-list-controls-list">
-		<li class="control-item" ng-click="eventList.eventControls.myEvents()">My Events</li>
-		<li class="control-item" ng-click="eventList.eventControls.allEvents()">All Events</li>
-		<li class="control-item">Map</li>
-		<li class="control-item">Settings</li>
-	</ul>
-	<input type="text" ng-model="eventList.eventControls.filterParameter">
-</div>
-
-<div class="event-list-container">
-	<div class="event-preview ng-trans ng-trans-slide-right" ui-sref="eventDetails({ eventId: event._id })" ng-repeat="event in eventList.events | searchFor:eventList.eventControls.filterParameter:eventList.filterFunction" ng-show="eventList.showEvents">
-		<div class="event-preview-name">{{event.name}}</div>
-		<div class="event-preview-image"></div>
-		<div class="event-preview-location"></div>
-		<div class="event-preview-date"></div>
-		<div class="event-preview-views"></div>
-		<div class="event-preview-owner"></div>
-		<div class="event-preview-cost"></div>
-		<div class="event-preview-tag-container"></div>
-		<div class="event-preview-media">
-			<div class="event-preview-media-owner"></div>
-			<div class="event-preview-media-attendee"></div>
-		</div>
-		<div class="event-preview-body">
-			<div class="event-preview-text">{{event.description}}</div>
+	<div class="event-list-filter-controls ng-trans ng-trans-slide-left" ng-show="eventList.filterBoxControls.show">
+		<input class="text-input search-input" placeholder="search events near you.." type="text" ng-model="eventList.eventControls.filterParameter" auto-focus>
+	</div>
+	<div class="event-list-controls">
+		<ul class="event-list-controls-list">
+			<li class="control-item" ng-click="eventList.eventControls.myEvents()">My Events</li>
+			<li class="control-item" ng-click="eventList.eventControls.allEvents()">All Events</li>
+			<li class="control-item" ng-click="eventList.filterBoxControls.showFilterControls()">Filter Events</li>
+			<li class="control-item">Map</li>
+			<li class="control-item">Settings</li>
+		</ul>
+	</div>
+	<div class="event-list-container">
+		<div class="event-list-container-inside">
+			<div class="event-preview ng-trans ng-trans-fade-right" ui-sref="eventDetails({ eventId: event._id })" ng-repeat="event in eventList.events | searchFor:eventList.eventControls.filterParameter:eventList.filterFunction" ng-show="eventList.showEvents">
+				<div class="event-preview-name">{{event.name}}</div>
+				<div class="event-preview-image"></div>
+				<div class="event-preview-location"></div>
+				<div class="event-preview-date"></div>
+				<div class="event-preview-views"></div>
+				<div class="event-preview-owner"></div>
+				<div class="event-preview-cost"></div>
+				<div class="event-preview-tag-container"></div>
+				<div class="event-preview-media">
+					<div class="event-preview-media-owner"></div>
+					<div class="event-preview-media-attendee"></div>
+				</div>
+				<div class="event-preview-body">
+					<div class="event-preview-text">{{event.description}}</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
