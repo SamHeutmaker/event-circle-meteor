@@ -22,3 +22,10 @@ fourseven:scss
 angular
 angularjs:angular-animate
 erasaur:meteor-lodash
+meteorhacks:npm
+lai:meteor-xray
+
+
+npm-container
+insecure
+percolate:synced-cron

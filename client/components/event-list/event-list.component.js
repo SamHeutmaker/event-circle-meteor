@@ -8,6 +8,7 @@ angular.module('EventCircle')
 
         // Attach $scope to $reactive
         $reactive(this).attach($scope);
+      
 
         // Returns all events
         this.helpers({
