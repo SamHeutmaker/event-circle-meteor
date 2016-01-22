@@ -8,6 +8,7 @@ angular.module('EventCircle')
 
         // Attach $scope to $reactive
         $reactive(this).attach($scope);
+      
 
         // Returns all events
         this.helpers({
@@ -20,14 +21,24 @@ angular.module('EventCircle')
           }
         });
 
+        this.keyPressed = (e) => {
+          this.filterBoxControls.showFilterControls();
+        };
+
+        this.filterBoxControls = {
+          show: false,
+          showFilterControls: () => {
+            this.eventControls.filterParameter = "";
+            this.filterBoxControls.show = (this.filterBoxControls.show) ? false : true;
+          }
+        };
+
         // Event Filtering Controls
         this.eventControls = {
           allEvents: () => {
             this.eventControls.searchFilters.searchFiltershasOwner = false;
             this.eventControls.searchFilters.hasText = true;
             this.eventControls.filterParameter = '';
-
-
           },
           myEvents: () => {
             this.eventControls.searchFilters.hasText = false;
@@ -89,7 +100,7 @@ angular.module('EventCircle')
               return this.searchFunctions.hasOwner(events, filterParameter);
             }
           })();
-        })
+        });
 
 
         // For Animation on each page load
@@ -104,4 +115,14 @@ angular.module('EventCircle')
 
       }
     }
-  });
+  })
+.directive('autoFocus', function($timeout) {
+    return {
+        restrict: 'AC',
+        link: function(_scope, _element) {
+            $timeout(function(){
+                _element[0].focus();
+            }, 0);
+        }
+    };
+});
