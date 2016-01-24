@@ -21,14 +21,13 @@ angular.module('EventCircle')
           }
         });
 
-<<<<<<< HEAD
         // Filter Control Interface
-=======
+
         this.keyPressed = (e) => {
           this.filterBoxControls.showFilterControls();
         };
 
->>>>>>> 1ce3685ef067a53619a14ee967d0bb49a2e1e45d
+
         this.filterBoxControls = {
           show: false,
           showFilterControls: () => {
@@ -92,7 +91,6 @@ angular.module('EventCircle')
           }
         };
 
-<<<<<<< HEAD
         this.buildFilter = {
           filters: [{
             fn: this.searchFunctions.textSearch(),
@@ -105,7 +103,7 @@ angular.module('EventCircle')
             query: 'XpWXZRNRPsy7D9xSH'
           }],
           addFilter: (query, type) => {
-=======
+
         // Update filter function when searchFilters change
         $scope.$watch( () => {
             return this.eventControls.searchFilters.hasText;
@@ -120,7 +118,6 @@ angular.module('EventCircle')
             }
           })();
         });
->>>>>>> 1ce3685ef067a53619a14ee967d0bb49a2e1e45d
 
           }
         }
@@ -155,18 +152,6 @@ angular.module('EventCircle')
 
 
     }
-<<<<<<< HEAD
-  };
-=======
-  })
-.directive('autoFocus', function($timeout) {
-    return {
-        restrict: 'AC',
-        link: function(_scope, _element) {
-            $timeout(function(){
-                _element[0].focus();
-            }, 0);
-        }
-    };
->>>>>>> 1ce3685ef067a53619a14ee967d0bb49a2e1e45d
-});
+
+  }});
+

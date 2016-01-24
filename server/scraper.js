@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Meteor.startup(function() {
 
 
@@ -69,33 +69,7 @@ Meteor.startup(function() {
 
   })();
 
-  (function() {
-
-    var events = Events.find().fetch();
-
-    events.forEach(function(el, i) {
-
-
-
-
-      Events.update(el._id, el);
-
-    })
-  })();
-
 
 });
-=======
-Meteor.startup(function(){
 
-	(function(err, content) {
-		   
 
-		    	Events.insert({name: 'Sam', createdAt: new Date(), description: 'none'});
-		        
-
-		    
-		    })();
-		  
-		})
->>>>>>> 1ce3685ef067a53619a14ee967d0bb49a2e1e45d
