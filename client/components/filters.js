@@ -1,5 +1,6 @@
 angular.module('EventCircle')
   .filter('searchFor', function() {
+<<<<<<< HEAD
     return function(events, filterParams, filterFunction) {
     	
     	return (function(){
@@ -14,5 +15,9 @@ angular.module('EventCircle')
     		return currentEvents;
 
     	})();
+=======
+    return function(events, filterParameter, filterFunction) {
+    	return filterFunction(events, filterParameter);
+>>>>>>> 1ce3685ef067a53619a14ee967d0bb49a2e1e45d
     }
   });

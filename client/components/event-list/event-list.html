@@ -13,14 +13,22 @@
 	</div>
 	<div class="event-list-container">
 		<div class="event-list-container-inside">
+<<<<<<< HEAD
 			<div class="event-preview ng-trans ng-trans-fade-right"  ng-repeat="event in eventList.events | searchFor:eventList.eventControls.filterParameter:eventList.filterFunction | orderBy: 'unixDate'| limitTo:1000" ng-show="eventList.showEvents">
+=======
+			<div class="event-preview ng-trans ng-trans-fade-right" ui-sref="eventDetails({ eventId: event._id })" ng-repeat="event in eventList.events | searchFor:eventList.eventControls.filterParameter:eventList.filterFunction" ng-show="eventList.showEvents">
+>>>>>>> 1ce3685ef067a53619a14ee967d0bb49a2e1e45d
 				<div class="event-preview-name">{{event.name}}</div>
 				<div class="event-preview-image"></div>
 				<div class="event-preview-location"></div>
 				<div class="event-preview-date">{{event.date}}</div>
 				<div class="event-preview-views"></div>
+<<<<<<< HEAD
 				<div class="event-preview-url"></div>
 				<a href="{{event.url}}" target="_blank">Link To More Info</a>
+=======
+				<div class="event-preview-url">{{event.url}}</div>
+>>>>>>> 1ce3685ef067a53619a14ee967d0bb49a2e1e45d
 				<div class="event-preview-owner"></div>
 				<div class="event-preview-cost"></div>
 				<div class="event-preview-tag-container"></div>
