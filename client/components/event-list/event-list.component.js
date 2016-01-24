@@ -8,7 +8,6 @@ angular.module('EventCircle')
 
         // Attach $scope to $reactive
         $reactive(this).attach($scope);
-      
 
         // Returns all events
         this.helpers({
@@ -21,10 +20,7 @@ angular.module('EventCircle')
           }
         });
 
-        this.keyPressed = (e) => {
-          this.filterBoxControls.showFilterControls();
-        };
-
+        // Filter Control Interface
         this.filterBoxControls = {
           show: false,
           showFilterControls: () => {
@@ -54,13 +50,15 @@ angular.module('EventCircle')
 
         // Functions for filter events. Used as filters.
         this.searchFunctions = {
-
-          // Check if Event has text anywhere in any property
-          textSearch: (events, filterParameter) => {
+          // Filter property by text
+          textSearch: () => {
             return (events, filterParameter) => {
+              if (typeof events === 'function') {
+                events = events();
+              }
               var toReturn = _.filter(events, function(event) {
                 var concatenated = _.reduce(event, function(x, y) {
-                  if (!(event._id === y || event.createdAt === y || event.owner === y || __proto__ === y)) {
+                  if (event.name === y || event.allContent === y || event.description === y) {
                     var newString = y.replace(/\s/g, "");
                     newString = y.toLowerCase();
                     return x + newString.toString();
@@ -75,9 +73,8 @@ angular.module('EventCircle')
               return toReturn;
             }
           },
-
           // Filter events by owner id
-          hasOwner: (event, filterParameter) => {
+          hasOwner: () => {
             return (events, filterParameter) => {
               var toReturn = _.filter(events, function(event) {
                 return (event.owner === Meteor.userId() ? true : false);
@@ -87,21 +84,28 @@ angular.module('EventCircle')
           }
         };
 
-        // Update filter function when searchFilters change
-        $scope.$watch( () => {
-            return this.eventControls.searchFilters.hasText;
-          }, () => {
-          this.filterFunction = ((events, filterParameter) => {
-            console.log('changed');
-            // Returns a list of events that contain
-            if (this.eventControls.searchFilters.hasText) {
-              return this.searchFunctions.textSearch(events, filterParameter);
-            } else if (this.eventControls.searchFilters.hasOwner) {
-              return this.searchFunctions.hasOwner(events, filterParameter);
-            }
-          })();
-        });
+        this.buildFilter = {
+          filters: [{
+            fn: this.searchFunctions.textSearch(),
+            query: 'natalie'
+          }, {
+            fn: this.searchFunctions.textSearch(),
+            query: 'sam'
+          }, {
+            fn: this.searchFunctions.hasOwner(),
+            query: 'XpWXZRNRPsy7D9xSH'
+          }],
+          addFilter: (query, type) => {
 
+          }
+        }
+
+        // Update filter function when searchFilters change
+        $scope.$watch(() => {
+          return this.eventControls.searchFilters.hasText;
+        }, () => {
+          this.filterFunction = this.buildFilter.filters;
+        });
 
         // For Animation on each page load
         this.showEvents = false;
@@ -111,18 +115,20 @@ angular.module('EventCircle')
         $timeout(() => {
           this.changeShowEvents();
         }, 200);
-
-
       }
     }
   })
+
 .directive('autoFocus', function($timeout) {
-    return {
-        restrict: 'AC',
-        link: function(_scope, _element) {
-            $timeout(function(){
-                _element[0].focus();
-            }, 0);
-        }
-    };
+  return {
+    restrict: 'AC',
+    link: function(_scope, _element, args) {
+
+      $timeout(function() {
+        _element[0].focus();
+      }, 0);
+
+
+    }
+  };
 });

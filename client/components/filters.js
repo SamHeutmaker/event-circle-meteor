@@ -1,6 +1,18 @@
 angular.module('EventCircle')
   .filter('searchFor', function() {
-    return function(events, filterParameter, filterFunction) {
-    	return filterFunction(events, filterParameter);
+    return function(events, filterParams, filterFunction) {
+    	
+    	return (function(){
+
+    		var currentEvents = events;
+
+    		for(var index = 0; index < filterFunction.length; index++) {
+
+    			currentEvents = filterFunction[index].fn(currentEvents, filterFunction[index].query);
+    		}
+
+    		return currentEvents;
+
+    	})();
     }
   });
