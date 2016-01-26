@@ -8,7 +8,7 @@ angular.module('EventCircle')
 
         // Attach $scope to $reactive
         $reactive(this).attach($scope);
-      
+
 
         // Returns all events
         this.helpers({
@@ -32,14 +32,16 @@ angular.module('EventCircle')
           show: false,
           showFilterControls: () => {
             this.eventControls.filterParameter = "";
-            this.filterBoxControls.show = (this.filterBoxControls.show) ? false : true;
+            this.filterBoxControls.show = (this.filterBoxControls.show) ?
+              false : true;
           }
         };
 
         // Event Filtering Controls
         this.eventControls = {
           allEvents: () => {
-            this.eventControls.searchFilters.searchFiltershasOwner = false;
+            this.eventControls.searchFilters.searchFiltershasOwner =
+              false;
             this.eventControls.searchFilters.hasText = true;
             this.eventControls.filterParameter = '';
           },
@@ -65,7 +67,8 @@ angular.module('EventCircle')
               }
               var toReturn = _.filter(events, function(event) {
                 var concatenated = _.reduce(event, function(x, y) {
-                  if (event.name === y || event.allContent === y || event.description === y) {
+                  if (event.name === y || event.allContent ===
+                    y || event.description === y) {
                     var newString = y.replace(/\s/g, "");
                     newString = y.toLowerCase();
                     return x + newString.toString();
@@ -75,7 +78,8 @@ angular.module('EventCircle')
                   }
 
                 }, "");
-                return (concatenated.indexOf(filterParameter) > -1 ? true : false);
+                return (concatenated.indexOf(filterParameter) > -
+                  1 ? true : false);
               });
               return toReturn;
             }
@@ -84,7 +88,8 @@ angular.module('EventCircle')
           hasOwner: () => {
             return (events, filterParameter) => {
               var toReturn = _.filter(events, function(event) {
-                return (event.owner === Meteor.userId() ? true : false);
+                return (event.owner === Meteor.userId() ? true :
+                  false);
               });
               return toReturn;
             };
@@ -94,33 +99,28 @@ angular.module('EventCircle')
         this.buildFilter = {
           filters: [{
             fn: this.searchFunctions.textSearch(),
-            query: 'natalie'
-          }, {
-            fn: this.searchFunctions.textSearch(),
-            query: 'sam'
-          }, {
-            fn: this.searchFunctions.hasOwner(),
-            query: 'XpWXZRNRPsy7D9xSH'
+            query: this.eventControls.filterParameter
           }],
           addFilter: (query, type) => {
 
-        // Update filter function when searchFilters change
-        $scope.$watch( () => {
-            return this.eventControls.searchFilters.hasText;
-          }, () => {
-          this.filterFunction = ((events, filterParameter) => {
-            console.log('changed');
-            // Returns a list of events that contain
-            if (this.eventControls.searchFilters.hasText) {
-              return this.searchFunctions.textSearch(events, filterParameter);
-            } else if (this.eventControls.searchFilters.hasOwner) {
-              return this.searchFunctions.hasOwner(events, filterParameter);
-            }
-          })();
-        });
-
+            // Update filter function when searchFilters change
+            $scope.$watch(() => {
+              return this.eventControls.searchFilters.hasText;
+            }, () => {
+              this.filterFunction = ((events, filterParameter) => {
+                console.log('changed');
+                // Returns a list of events that contain
+                if (this.eventControls.searchFilters.hasText) {
+                  return this.searchFunctions.textSearch(events,
+                    filterParameter);
+                } else if (this.eventControls.searchFilters.hasOwner) {
+                  return this.searchFunctions.hasOwner(events,
+                    filterParameter);
+                }
+              })();
+            });
           }
-        }
+        };
 
         // Update filter function when searchFilters change
         $scope.$watch(() => {
@@ -153,5 +153,5 @@ angular.module('EventCircle')
 
     }
 
-  }});
-
+  }
+});
