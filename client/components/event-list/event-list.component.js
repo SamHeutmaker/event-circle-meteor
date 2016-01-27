@@ -96,37 +96,17 @@ angular.module('EventCircle')
           }
         };
 
-        this.buildFilter = {
-          filters: [{
-            fn: this.searchFunctions.textSearch(),
-            query: this.eventControls.filterParameter
-          }],
-          addFilter: (query, type) => {
-
-            // Update filter function when searchFilters change
-            $scope.$watch(() => {
-              return this.eventControls.searchFilters.hasText;
-            }, () => {
-              this.filterFunction = ((events, filterParameter) => {
-                console.log('changed');
-                // Returns a list of events that contain
-                if (this.eventControls.searchFilters.hasText) {
-                  return this.searchFunctions.textSearch(events,
-                    filterParameter);
-                } else if (this.eventControls.searchFilters.hasOwner) {
-                  return this.searchFunctions.hasOwner(events,
-                    filterParameter);
-                }
-              })();
-            });
-          }
-        };
 
         // Update filter function when searchFilters change
         $scope.$watch(() => {
-          return this.eventControls.searchFilters.hasText;
+          // Watch filterParameter
+          return this.eventControls.filterParameter;
         }, () => {
-          this.filterFunction = this.buildFilter.filters;
+          // Remove assign filter
+          this.filters = [{
+            fn: this.searchFunctions.textSearch(),
+            query: this.eventControls.filterParameter
+          }];
         });
 
         // For Animation on each page load

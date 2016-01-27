@@ -14,7 +14,7 @@
 	<div class="event-list-container">
 		<div class="event-list-container-inside">
 
-			<div class="event-preview ng-trans ng-trans-fade-right"  ng-repeat="event in eventList.events | searchFor:eventList.eventControls.filterParameter:eventList.filterFunction | orderBy: 'unixDate'| limitTo:1000" ng-show="eventList.showEvents">
+			<div class="event-preview ng-trans ng-trans-fade-right"  ng-repeat="event in eventList.events | searchFor:eventList.filters | orderBy: 'unixDate'| limitTo:1000" ng-show="eventList.showEvents">
 
 				<div class="event-preview-name">{{event.name}}</div>
 				<div class="event-preview-image"></div>
